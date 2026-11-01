@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>365 Dias com a Palavra de Deus | Voz do Altíssimo</title>
+  <meta name="description" content="Uma jornada de 365 dias de leitura, estudo e meditação bíblica.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <a class="logo" href="#" data-ir="inicio">Voz do Altíssimo</a>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <button data-ir="inicio">Início</button>
+      <button data-ir="jornada">Jornada</button>
+      <button data-ir="meses">Meses</button>
+      <button data-ir="progresso">Progresso</button>
+      <button data-ir="favoritos">Favoritos</button>
+      <button data-ir="busca">Buscar</button>
+    </nav>
+    <div class="ferramentas">
+      <button id="fonteMenos" aria-label="Diminuir fonte">A−</button>
+      <button id="fonteMais" aria-label="Aumentar fonte">A+</button>
+      <button id="modoLeitura" aria-pressed="false">Modo leitura</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- INÍCIO -->
+    <section id="inicio" class="tela ativa">
+      <div class="hero">
+        <div class="hero-texto">
+          <p class="marca">Voz do Altíssimo</p>
+          <h1>365 Dias com a Palavra de Deus</h1>
+          <p class="frase">“Um ano inteiro caminhando com Deus, um dia de cada vez.”</p>
+          <p class="boasvindas">Seja bem-vindo(a)! Que cada dia desta jornada aproxime o seu coração de Deus. Leia, medite, ore e anote o que o Senhor falar com você.</p>
+          <button class="btn" id="comecar">Começar minha jornada</button>
+          <div class="mini-progresso">
+            <div class="barra"><span id="barraInicio"></span></div>
+            <small id="textoInicio"></small>
+          </div>
+        </div>
+        <div class="hero-img" aria-hidden="true">
+          <svg viewBox="0 0 400 300" role="img">
+            <defs>
+              <linearGradient id="luz" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#fff6dc"/><stop offset="1" stop-color="#f4ead6"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="300" rx="24" fill="url(#luz)"/>
+            <circle cx="320" cy="60" r="34" fill="#C6A15B" opacity=".25"/>
+            <rect x="40" y="215" width="320" height="18" rx="9" fill="#d9c7a0"/>
+            <path d="M200 90 C150 70 95 75 55 95 L55 210 C95 190 150 190 200 210 Z" fill="#fffdf7" stroke="#C6A15B" stroke-width="3"/>
+            <path d="M200 90 C250 70 305 75 345 95 L345 210 C305 190 250 190 200 210 Z" fill="#fffdf7" stroke="#C6A15B" stroke-width="3"/>
+            <g stroke="#d8c9a6" stroke-width="2">
+              <path d="M75 120 H180M75 138 H180M75 156 H180M75 174 H170"/>
+              <path d="M220 120 H325M220 138 H325M220 156 H325M220 174 H315"/>
+            </g>
+            <path d="M200 90 V210" stroke="#C6A15B" stroke-width="3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="grade">
+        <article class="cartao"><h3>Palavra do dia</h3><p class="ref" id="pdRef"></p><p id="pdTexto"></p></article>
+        <article class="cartao"><h3>Mensagem do dia</h3><p id="msgDia"></p></article>
+      </div>
+    </section>
+
+    <!-- JORNADA (dia) -->
+    <section id="jornada" class="tela">
+      <div class="nav-dia">
+        <button class="btn-sec" id="diaAnterior">← Anterior</button>
+        <div class="ir-dia">
+          <label for="irDia">Ir para o dia</label>
+          <input type="number" id="irDia" min="1" max="365" value="1">
+          <button class="btn-sec" id="irDiaBtn">Ir</button>
+        </div>
+        <button class="btn-sec" id="diaProximo">Próximo →</button>
+      </div>
+      <article class="cartao estudo" id="estudo"></article>
+    </section>
+
+    <!-- MESES -->
+    <section id="meses" class="tela">
+      <h2>Os 12 meses da jornada</h2>
+      <div class="grade meses" id="listaMeses"></div>
+      <div id="diasDoMes" class="dias-mes"></div>
+    </section>
+
+    <!-- PROGRESSO -->
+    <section id="progresso" class="tela">
+      <h2>Meu progresso</h2>
+      <div class="grade stats">
+        <div class="cartao stat"><strong id="stConcluidos">0</strong><span>dias concluídos</span></div>
+        <div class="cartao stat"><strong id="stRestantes">365</strong><span>dias restantes</span></div>
+        <div class="cartao stat"><strong id="stPorc">0%</strong><span>da jornada</span></div>
+        <div class="cartao stat"><strong id="stSeq">0</strong><span>dias seguidos</span></div>
+      </div>
+      <div class="barra grande"><span id="barraProg"></span></div>
+      <button class="btn" id="continuar">Continuar de onde parei</button>
+      <h3>Calendário de leitura</h3>
+      <div class="calendario" id="calendario"></div>
+      <p class="legenda"><i class="c-ok"></i> Concluído <i class="c-atual"></i> Dia atual <i class="c-vazio"></i> Pendente</p>
+      <button class="btn-sec perigo" id="zerar">Reiniciar jornada</button>
+    </section>
+
+    <!-- FAVORITOS -->
+    <section id="favoritos" class="tela">
+      <h2>Estudos favoritos</h2>
+      <div id="listaFav" class="lista"></div>
+    </section>
+
+    <!-- BUSCA -->
+    <section id="busca" class="tela">
+      <h2>Buscar estudos</h2>
+      <input type="search" id="campoBusca" placeholder="Tema, título ou referência (ex.: Salmos 23)">
+      <div id="resultados" class="lista"></div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p>© <span id="ano"></span> Voz do Altíssimo · Texto bíblico: Almeida Revista e Corrigida (domínio público). Reflexões e orações são autorais.</p>
+  </footer>
+
+  <div id="aviso" class="aviso" role="status" aria-live="polite"></div>
+
+  <script src="dados.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
